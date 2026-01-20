@@ -3,7 +3,6 @@ import React, { useState, useEffect, useRef } from 'react';
 import lottie from 'lottie-web';
 import { TranslationMode, TranslationResult } from './types';
 import { APP_NAME } from './constants';
-import { translateText } from './services/geminiService';
 import VoiceInput from './components/VoiceInput';
 import { logoAnimationData } from './lottieData';
 
@@ -46,21 +45,32 @@ const App: React.FC = () => {
   const [isListening, setIsListening] = useState(false);
   const [history, setHistory] = useState<TranslationResult[]>([]);
 
-  const handleTranslate = async () => {
-    if (!inputText.trim()) return;
-    setIsLoading(true);
-    const result = await translateText(inputText, mode);
-    setTranslatedText(result);
-    
-    const newEntry: TranslationResult = {
-      original: inputText,
-      translated: result,
-      mode: mode,
-      timestamp: Date.now()
-    };
-    setHistory(prev => [newEntry, ...prev].slice(0, 3));
+ const handleTranslate = async () => {
+  console.log('CLICK TRADUCIR - handleTranslate ejecutado');
+
+  if (!inputText.trim()) return;
+
+  setIsLoading(true);
+
+  try {
+    const res = await fetch('/api/translate', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        text: inputText,
+        mode,
+      }),
+    });
+
+    const data = await res.json();
+    setTranslatedText(data.result || 'Sin respuesta del servidor');
+  } catch (e) {
+    setTranslatedText('Error técnico. Parece que el servidor se tomó el palo.');
+  } finally {
     setIsLoading(false);
-  };
+  }
+};
+
 
   const toggleMode = () => {
     setMode(prev => 
