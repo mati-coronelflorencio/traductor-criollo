@@ -1,0 +1,7 @@
+{
+  "name": "Traductor marketing agencia",
+  "description": "Un traductor semántico bidireccional entre el lenguaje técnico de marketing y el habla cotidiana argentina (costumbrista).",
+  "requestFramePermissions": [
+    "microphone"
+  ]
+}

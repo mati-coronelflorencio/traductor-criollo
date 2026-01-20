@@ -1,0 +1,105 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> TRADUCTOR MKT- CRIOLLO </title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Background: fbf4ea, Primary: 000043 */
+            --nm-bg: #fbf4ea;
+            --nm-accent: #000043;
+            --nm-shadow-dark: #e3dbcf; /* Darker version of fbf4ea */
+            --nm-shadow-light: #ffffff;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--nm-bg);
+            color: var(--nm-accent);
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        h1, h2, h3 {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Neumorphic Utility Classes with new palette */
+        .nm-flat {
+            background: var(--nm-bg);
+            box-shadow: 12px 12px 24px var(--nm-shadow-dark), 
+                        -12px -12px 24px var(--nm-shadow-light);
+        }
+        .nm-inset {
+            background: var(--nm-bg);
+            box-shadow: inset 8px 8px 16px var(--nm-shadow-dark), 
+                        inset -8px -8px 16px var(--nm-shadow-light);
+        }
+        .nm-button {
+            background: var(--nm-bg);
+            box-shadow: 6px 6px 12px var(--nm-shadow-dark), 
+                        -6px -6px 12px var(--nm-shadow-light);
+            transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            color: var(--nm-accent);
+        }
+        .nm-button:active {
+            box-shadow: inset 4px 4px 8px var(--nm-shadow-dark), 
+                        inset -4px -4px 8px var(--nm-shadow-light);
+            transform: scale(0.96);
+        }
+        /* Primary button uses the deep blue */
+        .nm-button-primary {
+            background: var(--nm-accent);
+            box-shadow: 6px 6px 12px var(--nm-shadow-dark), 
+                        -6px -6px 12px var(--nm-shadow-light);
+            color: #fbf4ea;
+        }
+        .nm-button-primary:active {
+            background: #000030;
+            box-shadow: inset 4px 4px 8px #000010, 
+                        inset -4px -4px 8px #000050;
+        }
+        /* Hide scrollbar but keep functionality */
+        ::-webkit-scrollbar {
+            width: 0px;
+            background: transparent;
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .animate-fade-in {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+        
+        @keyframes fadeOut {
+            from { opacity: 1; }
+            to { opacity: 0; }
+        }
+        .animate-fade-out {
+            animation: fadeOut 0.5s ease-in forwards;
+        }
+    </style>
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.2.3",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "@google/genai": "https://esm.sh/@google/genai@^1.37.0",
+    "lottie-web": "https://esm.sh/lottie-web@^5.12.2"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body class="min-h-screen">
+    <div id="root"></div>
+<script type="module" src="/index.tsx"></script>
+</body>
+</html>
