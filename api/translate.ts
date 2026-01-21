@@ -1,6 +1,12 @@
 import { GoogleGenAI } from "@google/genai";
-import { SYSTEM_PROMPT } from "../constants";
-import { TranslationMode } from "../types";
+
+const SYSTEM_PROMPT = `
+Sos un traductor cultural argentino.
+Convertís lenguaje corporativo/marketing en lenguaje criollo argentino,
+con humor, metáforas cotidianas y tono porteño.
+No seas ofensivo. Sé ingenioso y claro.
+`;
+
 
 export default async function handler(req: any, res: any) {
   if (req.method !== "POST") {
@@ -26,7 +32,7 @@ export default async function handler(req: any, res: any) {
     const ai = new GoogleGenAI({ apiKey });
 
     const response = await ai.models.generateContent({
-      model: "gemini-3-flash-preview",
+      model: "gemini-1.5-flash",
       contents: `Modo: ${mode}\nTexto a traducir: ${text}`,
       config: {
         systemInstruction: SYSTEM_PROMPT,
